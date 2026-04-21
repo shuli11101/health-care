@@ -5,5 +5,6 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import router from '@/router/backrouter'
 import { createPinia } from 'pinia'
+import '@/utils/echarts.js'
 
 createApp(App).use(ElementPlus).use(router).use(createPinia()).mount('#app')

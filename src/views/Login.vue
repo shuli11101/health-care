@@ -1,7 +1,11 @@
 <script setup>
   import { Back } from '@element-plus/icons-vue'
-  import { reactive, ref } from 'vue'
+  import { login, getCategoryTree } from '@/api/admin'
+  import { onMounted, reactive, ref } from 'vue'
+  import { ElMessage } from 'element-plus'
+  import { useRouter } from 'vue-router'
 
+  const router = useRouter()
 
   // 用户信息
   const form = reactive({
@@ -9,6 +13,7 @@
     password: ''
   })
 
+  // 登陆校验规则
   const rules = reactive({
     username: [
       { required: true, message: '请输入用户名', trigger: 'blur' }
@@ -20,10 +25,33 @@
 
   // 登陆校验
   const loginRef = ref()
-  const loginAccount = async (formEl) => {
-    if(!formEl) return
-    await formEl.value.validate()
+  const loginAccount = async () => {
+    if(!loginRef.value) return
+    loginRef.value.validate((valid, fields) => {
+      if(valid) {
+        login(form).then(data => {
+          console.log('登录响应:', data)
+          if(data.data && data.data.token) {
+            // 登陆成功，保存token 和 用户信息
+            localStorage.setItem('token', data.data.token)
+            localStorage.setItem('userInfo', JSON.stringify(data.data.userInfo))
+            router.push('/back/dashboard')
+            ElMessage.success('登陆成功')
+          } else {
+            ElMessage.error('登录失败：无法获取token')
+          }
+        }).catch(error => {
+          console.error('登录失败:', error)
+          ElMessage.error(error.message || '登录失败，请稍后重试')
+        })
+      } else {
+        console.error('表单验证失败:', fields)
+        ElMessage.error('请填写完整的登录信息')
+      }
+    })
   }
+
+  
 
 </script>
 
@@ -46,7 +74,7 @@
       <el-form
         :model="form"
         :rules="rules"
-        :ref="loginRef"
+        ref="loginRef"
         label-position="top"
       >
         <el-form-item label="用户名" prop="username" >
@@ -56,7 +84,7 @@
           <el-input v-model="form.password" size="large" placeholder="请输入密码" type="password" show-password></el-input>
         </el-form-item>
       </el-form>
-      <el-button type="primary" class="btn" size="large" @click="loginAccount(loginRef)">登陆</el-button>
+      <el-button type="primary" class="btn" size="large" @click="loginAccount()">登陆</el-button>
       <div class="footer">
         <p>还没有账号？<router-link to="/auth/register">去注册</router-link></p>
       </div>

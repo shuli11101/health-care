@@ -8,13 +8,7 @@ import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
 import AuthLayout from '@/components/AuthLayout.vue'
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    {
-      path: '/',
-      redirect: '/back'
-    },
+const backRouter =[
     {
       path: '/back',
       component: BackLayout,
@@ -79,6 +73,86 @@ const router = createRouter({
       ]
     }
   ]
+
+
+  
+// 前台路由
+const frontRouter = [
+    {
+      path: '/',
+      component: () => import('@/components/FrontLayout.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/home.vue')
+        },
+        {
+          path: 'frontConsulations',
+          component: () => import('@/views/frontConsulations.vue')
+        },
+        {
+          path: 'frontEmotional',
+          component: () => import('@/views/frontEmotional.vue')
+        },
+        {
+          path: 'frontKnowledge',
+          component: () => import('@/views/frontKnowledge.vue')
+        },
+        {
+          path: 'frontArticleDetail/:id',
+          component: () => import('@/views/frontArticleDetail.vue'),
+          props: true
+        }
+      ]
+    }
+]
+    
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    ...backRouter,
+    ...frontRouter
+  ]
 })
 
 export default router
+
+
+
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token')
+  const userInfo = JSON.parse(localStorage.getItem('userInfo') || 'null')
+  // 存在token
+  if(token && userInfo) {
+    // 判断是前台后台
+    if(userInfo.userType == 2) { //后台时
+      if(to.path.startsWith('/back')) {
+        next()
+      } else if(to.path.startsWith('/auth')) {
+        next()
+      } else {
+        next('/back/dashboard')
+      }
+    } else { //如果是前台
+      if(to.path.startsWith('/back')) {
+        next('/')
+      } else {
+        next()
+      }
+    }
+  } else {
+    if(to.path.startsWith('/back')) {
+      next('/auth/login')
+    } else {
+      next()
+    }
+  }
+})
+
+
+
+
+
+

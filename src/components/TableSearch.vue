@@ -1,6 +1,7 @@
 <!-- 表格搜索组件 -->
 <script setup>
 import { ref, reactive, computed } from 'vue';
+import { getArticleList } from '../api/admin';
 
   // 接收父级传过来的el-input类型
   const props = defineProps({
@@ -24,7 +25,8 @@ import { ref, reactive, computed } from 'vue';
   const formData = reactive({})
 
   // 处理查询事件
-  const handleSearch = () => {
+  const handleSearch = async () => {
+
     emit('search', formData)
   }
   // 处理重置事件
@@ -70,16 +72,16 @@ import { ref, reactive, computed } from 'vue';
         </el-form-item>
       </el-col>
     </el-row>
-    <el-row :gutter="24" style="margin-top: 16px;">
+    <el-row :gutter="24">
+      <el-col :span="24" style="display: flex; justify-content: flex-start; gap: 10px;">
         <el-button type="primary" @click="handleSearch">查询</el-button>
         <el-button @click="handleReset(ruleFormRef)">重置</el-button>
+      </el-col>
     </el-row>
   </el-form>
 </template>
 
 
-<style>
-  .el-button {
-    text-align: start;
-  }
+<style scoped lang="scss">
+
 </style>

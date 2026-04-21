@@ -1,0 +1,20 @@
+[
+  {
+    "id": 2,
+    "userId": 2,
+    "username": "user",
+    "nickname": "用户",
+    "diaryDate": "2026-04-21",
+    "moodScore": 5,
+    "emotion": "开心",
+    "content": "123",
+    "createdAt": "2026/4/21",
+    "updatedAt": "2026/4/21",
+    "sleepQuality": "4",
+    "stressLevel": "4",
+    "factor": "123",
+    "primaryEmotion": "开心",
+    "dominantEmotion": "开心",
+    "aiEmotionAnalysis": ""
+  }
+]

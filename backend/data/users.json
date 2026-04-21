@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "email": "admin@example.com",
+    "password": "$2a$10$zaKM7dEteRRaEmJYT4KAKeQhvQdn3HqOFiy0AhfgCnPjfWlEG15RK",
+    "nickname": "管理员",
+    "phone": "13800138000",
+    "gender": 1,
+    "userType": 2
+  },
+  {
+    "id": 2,
+    "username": "shuli",
+    "email": "123456",
+    "password": "$2a$10$oGpMxIMa/Ms/t9zTbRIIlO0X0lhV0TKXMnzDE3bjoKn.rit5FtLYK",
+    "nickname": "shuli",
+    "phone": "shuli",
+    "gender": 0,
+    "userType": 1
+  },
+  {
+    "id": 3,
+    "username": "shuli1111111",
+    "email": "1234561",
+    "password": "$2a$10$tYx4Si5A8cFs0b7p4NMvTu/6AV6jI1MvwOk5B5oP9ja34vt1xGhOO",
+    "nickname": "shuli1111111",
+    "phone": "shuli",
+    "gender": 0,
+    "userType": 1
+  },
+  {
+    "id": 4,
+    "username": "123",
+    "email": "123123",
+    "password": "$2a$10$BJ8clVecCGeLaMfqiIQ5o.YkJ7hlZzPaodFYNRdPDe2IARKDRrRDq",
+    "nickname": "123",
+    "phone": "shuli",
+    "gender": 0,
+    "userType": 1
+  },
+  {
+    "id": 5,
+    "username": "sdfgd",
+    "email": "sdfg",
+    "password": "$2a$10$c3moJ0sII6rgBxc/5OmZyuLmbP8mbq8X/o46gdngoTIPY9YDa68XC",
+    "nickname": "sdfgd",
+    "phone": "shuli",
+    "gender": 0,
+    "userType": 1
+  },
+  {
+    "id": "20260421090832453",
+    "username": "shuli1101",
+    "email": "asdfgh",
+    "password": "$2a$10$2NvHMbJt7NwJVuSthIQ2tOanU7V37sxzxWUSh9BFhPnq4id/apqNK",
+    "nickname": "shuli1101",
+    "phone": "123123121231233@qq.com",
+    "gender": 0,
+    "userType": 1
+  },
+  {
+    "id": "20260421091153803",
+    "username": "s",
+    "email": "123123123",
+    "password": "$2a$10$UQRVks.sSoW6H.p1WRCoYO9uhWAbmvklPMVCy5b54S35lz30nha1W",
+    "nickname": "s",
+    "phone": "",
+    "gender": 0,
+    "userType": 1
+  },
+  {
+    "id": "20260421091446771",
+    "username": "sa",
+    "email": "123",
+    "password": "$2a$10$CVQvG8yfPf/6lCOzLc9m5.KsFT8joUkNRPUU8vKNvtVXqodq/Y.lK",
+    "nickname": "sa",
+    "phone": "",
+    "gender": 0,
+    "userType": 1
+  }
+]
