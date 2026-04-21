@@ -7,6 +7,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/health-care/',
   plugins: [
     vue(),
     AutoImport({
@@ -33,3 +34,4 @@ export default defineConfig({
       include: ['@wangeditor/editor', '@wangeditor/editor-for-vue']
   }
 })
+
