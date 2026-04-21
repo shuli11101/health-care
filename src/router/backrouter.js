@@ -109,7 +109,7 @@ const frontRouter = [
     
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/health-care/'),
   routes: [
     ...backRouter,
     ...frontRouter
