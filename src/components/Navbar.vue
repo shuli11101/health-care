@@ -53,7 +53,7 @@
       <el-button @click="toggleCollapse">
         <el-icon><Expand /></el-icon>
       </el-button>
-      <p>{{ route.meta.title }}</p>
+      <p style="margin-left: 10px;">{{ route.meta.title }}</p>
     </div>
     <div class="flex-box">
       <!-- 整体下拉菜单位置 -->

@@ -1,7 +1,7 @@
 <script setup>
   import { Back } from '@element-plus/icons-vue'
-  import { login, getCategoryTree } from '@/api/admin'
-  import { onMounted, reactive, ref } from 'vue'
+  import { login } from '@/api/admin'
+  import { reactive, ref } from 'vue'
   import { ElMessage } from 'element-plus'
   import { useRouter } from 'vue-router'
 
@@ -78,10 +78,10 @@
         label-position="top"
       >
         <el-form-item label="用户名" prop="username" >
-          <el-input v-model="form.username" size="large" placeholder="请输入用户名"></el-input>
+          <el-input v-model="form.username" size="large" @keyup.enter="loginAccount" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="form.password" size="large" placeholder="请输入密码" type="password" show-password></el-input>
+          <el-input v-model="form.password" size="large" placeholder="请输入密码" type="password" @keyup.enter="loginAccount" show-password></el-input>
         </el-form-item>
       </el-form>
       <el-button type="primary" class="btn" size="large" @click="loginAccount()">登陆</el-button>

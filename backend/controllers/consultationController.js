@@ -1,6 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+const dotenv = require('dotenv');
+
+// 加载环境变量
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 // 数据文件路径
 const SESSIONS_FILE = path.join(__dirname, '../data/sessions.json');
@@ -310,7 +314,8 @@ const consultationController = {
       res.flushHeaders();
 
       // === 调用百度千帆 v2 流式 ===
-      const API_KEY = process.env.BAIDU_API_KEY; // bce-v3/xxx
+      // 使用环境变量加载API密钥
+      const API_KEY = process.env.BAIDU_API_KEY;
       console.log('当前使用的API密钥前6位:', API_KEY ? API_KEY.substring(0, 6) : '未设置');
       console.log('完整API密钥:', API_KEY);
       const API_URL = 'https://qianfan.baidubce.com/v2/chat/completions';
@@ -318,6 +323,15 @@ const consultationController = {
       if (!API_KEY) {
         console.error('API密钥未设置');
         res.write(`event: message\ndata: ${JSON.stringify({ code: 500, msg: 'API密钥未设置' })}\n\n`);
+        res.write(`event: done\ndata: ${JSON.stringify({ code: 500, data: { content: '' } })}\n\n`);
+        res.end();
+        return;
+      }
+      
+      // 验证API密钥格式
+      if (!API_KEY.startsWith('bce-v3/')) {
+        console.error('API密钥格式不正确');
+        res.write(`event: message\ndata: ${JSON.stringify({ code: 500, msg: 'API密钥格式不正确' })}\n\n`);
         res.write(`event: done\ndata: ${JSON.stringify({ code: 500, data: { content: '' } })}\n\n`);
         res.end();
         return;

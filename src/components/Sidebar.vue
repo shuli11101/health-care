@@ -7,7 +7,7 @@
   const router = useRouter()
 
   // 左上角图片显示
-  const brandImg = new URL('../assets/images/机器人.png', import.meta.url).href
+  // const brandImg = new URL('../assets/images/机器人.png', import.meta.url).href
   
 
   // 图标
@@ -36,18 +36,21 @@ const isCollapse = computed(() => chCollapse.isCollapse)
 <template>
   <el-row width="264px" class="tac">
       <el-menu
-        default-active="1"
+        default-active="0"
         class="menu-style"
         :collapse="isCollapse"
       >
       <div  class="brand">
-      <el-image class="brand-logo" style="width: 50px; height: 50px; margin-right: 10px;" :src="brandImg"></el-image>
+      <!-- <el-image class="brand-logo" style="width: 50px; height: 50px; margin-right: 10px;" :src="brandImg"></el-image> -->
           <div v-show="!isCollapse" class="info-card">
             <h1 class="brand-title">心理健康AI助手</h1>
             <p class="brand-subtitle">管理后台</p>
           </div>
+          <div v-show="isCollapse" style="height: 53.8px" class="info-card">
+          
+          </div>
         </div>
-          <el-menu-item v-for="item in router.options.routes[0].children" :key="item.path" :index="item.path" @click="selectMenu(item.path)">
+          <el-menu-item  v-for="(item, index) in router.options.routes[0].children" :key="item.path" :index="String(index)" @click="selectMenu(item.path)">
             <el-icon>
               <component :is="iconMap[item.meta.icon]" />
             </el-icon>

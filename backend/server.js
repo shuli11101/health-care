@@ -5,7 +5,8 @@ const cors = require('cors');
 const routes = require('./routes');
 
 // 加载环境变量
-dotenv.config({ path: '../.env' });
+const path = require('path');
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const app = express();
 const PORT = process.env.PORT || 3000;

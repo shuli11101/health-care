@@ -6,7 +6,7 @@ import { logoutAccount } from '@/api/admin';
 
 
 // logo
-const logo = new URL('@/assets/images/机器人.png', import.meta.url).href
+const logo = new URL('@/assets/images/newLogo.png', import.meta.url).href
 
 // 确定是否登陆
 const isLogin = ref(false)
@@ -105,11 +105,12 @@ const handleLogout = () => {
         }
 
         .footer-container {
-            background: #1f2937;
-            color: white;
+            // background: #1f2937;
+            color: grey;
             padding: 15px 0;
-            margin-top: auto;
+            margin-top: 0;
             .footer-bottom {
+                font-size: 14px;
                 max-width: 1200px;
                 margin: 0 auto;
                 padding: 0 10px;

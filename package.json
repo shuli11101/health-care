@@ -28,6 +28,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "5.2.4",
     "gh-pages": "^6.3.0",
+    "nodemon": "^3.1.14",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-icons": "^23.0.1",
     "unplugin-vue-components": "^32.0.0",

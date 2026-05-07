@@ -337,11 +337,12 @@ const articleController = {
   // 获取文章列表
   getArticleList: async (req, res) => {
     try {
-      const { sortField = 'published', sortDirection = 'desc', currentPage = req.query.page || 1, size = req.query.pageSize || 10, categoryId, status } = req.query;
+      const { sortField = 'published', sortDirection = 'desc', currentPage = req.query.page || 1, size = req.query.pageSize || 10, categoryId, status, title } = req.query;
       
       let filteredArticles = articles;
       if (categoryId) filteredArticles = filteredArticles.filter(article => article.categoryId == categoryId);
       if (status) filteredArticles = filteredArticles.filter(article => article.status == status);
+      if (title) filteredArticles = filteredArticles.filter(article => article.title.toLowerCase().includes(title.toLowerCase()));
       
       // 排序
       filteredArticles.sort((a, b) => {
@@ -360,6 +361,7 @@ const articleController = {
         if (aValue < bValue) return sortDirection === 'desc' ? 1 : -1;
         if (aValue > bValue) return sortDirection === 'desc' ? -1 : 1;
         return 0;
+
       });
       
       const total = filteredArticles.length;

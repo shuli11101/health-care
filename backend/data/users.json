@@ -78,5 +78,15 @@
     "phone": "",
     "gender": 0,
     "userType": 1
+  },
+  {
+    "id": "20260422211842785",
+    "username": "阿斯蒂芬这是v",
+    "email": "123asdf",
+    "password": "$2a$10$H8Fydx1uRQsyGGcEyBkMNe8OX14ps2e.AUUYXaBay8g7tJJrFMxWC",
+    "nickname": "阿斯蒂芬这是v",
+    "phone": "admin",
+    "gender": 0,
+    "userType": 1
   }
 ]

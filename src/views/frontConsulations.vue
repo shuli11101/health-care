@@ -23,6 +23,10 @@ const chatBodyRef = ref(null)
 
 // 临时会话创建
 const handleNewChat = () => {
+  if(aiIsTyping.value) {
+    ElMessage.error('请稍后再创建新会话')
+    return
+  }
   console.log('临时会话')
   const newChat = {
     sessionId: `temp_${Date.now()}`,
@@ -262,6 +266,10 @@ const getChatPage = async () => {
 
 // 点击获取会话数据（从历史数据中）
 const handleChatClick = async (item) => {
+  if(aiIsTyping.value) {
+    ElMessage.error('请稍后再点击消息')
+    return
+  }
   console.log(item)
   try {
     const res = await getChatDetail(item.id)
@@ -416,7 +424,7 @@ const getIntensityClass = (score) => {
          </div>
     </div>
     <div class="chat-main">
-      <div class="chat-header">
+      <!-- <div class="chat-header">
         <div class="header-left">
           <div class="chat-avatar">
             <el-image :src="iconUrl2" style="width: 25px;height: 25px;"></el-image>
@@ -432,7 +440,7 @@ const getIntensityClass = (score) => {
             <el-icon><Plus /></el-icon>
           </div>
         </el-button>
-      </div>
+      </div> -->
       <!-- 聊天消息区域 -->
        <div ref="chatBodyRef" class="chat-messages">
          <div class="message-item ai-message" v-if="message.length === 0">
@@ -447,9 +455,9 @@ const getIntensityClass = (score) => {
           </div>
         </div>
         <div v-for="(item, index) in message" :key="item.id" class="message-item">
-          <div :class="item.senderType === 1 ? 'user-message' : 'ai-message'">
+          <!-- <div :class="item.senderType === 1 ? 'user-message' : 'ai-message'">
             <el-image class="message-avatar" :src="item.senderType === 1 ? userIcon : iconUrl1"></el-image>
-          </div>
+          </div> -->
           <div class="message-content">
             <div class="message-bubble">
               <!-- ai正在输入中 -->
@@ -514,7 +522,7 @@ const getIntensityClass = (score) => {
             .breathing-circle {
                 width: 60px;
                 height: 60px;
-                background: linear-gradient(135deg, #fb923c 0%, #f59e0b 100%);
+                background: #ff9a9e;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -527,7 +535,7 @@ const getIntensityClass = (score) => {
             .assistant-name {
                 font-size: 16px;
                 font-weight: 700;
-                background: linear-gradient(135deg, #fb923c, #f59e0b);
+                background: linear-gradient(135deg,#ff9a9e, rgb(255, 221, 186));
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 text-align: center;
@@ -840,7 +848,7 @@ const getIntensityClass = (score) => {
                         .notice-title {
                             font-size: 14px;
                             font-weight: 600;
-                            color: #d4840f;
+                            color: #ddbb88;
                             margin-bottom: 6px;
                         }
                         .notice-text {
@@ -865,8 +873,8 @@ const getIntensityClass = (score) => {
         flex: 1;
         max-height: 685px;
         .chat-header {
-            background: linear-gradient(135deg, #fb923c 0%, #f59e0b 100%);
-            color: white;
+            background: linear-gradient(-45deg,  #ffe0fd , #fad0c4, #ff9a9e);
+            color: #6E5A49;
             padding: 20px 24px;
             display: flex;
             align-items: center;
@@ -904,7 +912,8 @@ const getIntensityClass = (score) => {
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 24px;
+            padding: 46px;
+            padding-top: 50px;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -1021,10 +1030,11 @@ const getIntensityClass = (score) => {
                 height: 73px;
                 width: 73px;
                 border-radius: 16px;
-                background: linear-gradient(135deg, #fb923c 0%, #f59e0b 100%) !important;
+                background: linear-gradient(90deg, #fcccbc 0%, #fcb69f 100%) !important;
                 border: none !important;
                 box-shadow: 0 6px 20px rgba(251, 146, 60, 0.25);
                 transition: all 0.3s ease;
+                margin-bottom: 15px;
             }
 
         }

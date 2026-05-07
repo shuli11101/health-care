@@ -28,21 +28,25 @@ import { ElMessageBox } from 'element-plus'
   })
 
   // 处理查询事件 + 若无查询，则直接渲染所有文章
+  let loading = ref(false)
   const articleList = ref([])
   const sortArticleList = computed(() => {
     console.log(articleList.value)
     return (articleList.value || []).sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
   })
   const handleSearch = async (formData) => {
+    console.log(formData)
     const params = {
       page: pagination.value.currentPage,
       pageSize: pagination.value.size,
       ...formData,
       
     }
+    loading.value = true
     const res = await getArticleList(params)
     articleList.value = res.data.list
     pagination.value.total = res.data.pagination.total
+    loading.value = false
   }
 
   // 获取文章分类

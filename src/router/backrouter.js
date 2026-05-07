@@ -7,6 +7,7 @@ import Emotional from '@/views/Emotional.vue'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
 import AuthLayout from '@/components/AuthLayout.vue'
+import { createWebHashHistory } from 'vue-router'
 
 const backRouter =[
     {
@@ -109,7 +110,7 @@ const frontRouter = [
     
 
 const router = createRouter({
-  history: createWebHistory('/health-care/'),
+  history: createWebHashHistory('/health-care/'),
   routes: [
     ...backRouter,
     ...frontRouter
